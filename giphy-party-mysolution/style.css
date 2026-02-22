@@ -1,0 +1,51 @@
+body {
+  background-color: #fdf6ed;
+}
+
+h1 {
+  color: #681d4a;
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 45px;
+}
+.formContainer {
+  width: 300px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0 auto;
+}
+#displayImages {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Input + Search button row */
+.searchRow {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.searchRow input {
+  flex: 1;
+  padding: 8px;
+  border-color: #681d4a;
+}
+
+.searchRow button {
+  padding: 8px 12px;
+  background-color: #681d4a;
+  color: white;
+}
+
+/* Bottom button spacing */
+#clearBtn {
+  margin-top: 20px;
+  padding: 8px 12px;
+  justify-content: center;
+  background-color: #681d4a;
+  color: white;
+}
