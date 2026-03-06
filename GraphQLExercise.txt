@@ -1,0 +1,1570 @@
+# Welcome to GraphiQL
+#
+# GraphiQL is an in-browser tool for writing, validating, and
+# testing GraphQL queries.
+#
+# Type queries into this side of the screen, and you will see intelligent
+# typeaheads aware of the current GraphQL type schema and live syntax and
+# validation errors highlighted within the text.
+#
+# GraphQL queries typically start with a "{" character. Lines that start
+# with a # are ignored.
+#
+# An example GraphQL query might look like:
+#
+#     {
+#       field(arg: "value") {
+#         subField
+#       }
+#     }
+#
+# Keyboard shortcuts:
+#
+#   Prettify query:  Shift-Ctrl-P (or press the prettify button)
+#
+#  Merge fragments:  Shift-Ctrl-M (or press the merge button)
+#
+#        Run Query:  Ctrl-Enter (or press the play button)
+#
+#    Auto Complete:  Ctrl-Space (or just start typing)
+
+
+
+//#Basic Tasks 
+//#1  
+query MyQuery {
+  allFilms {
+    films: films {
+      title
+    }
+  }
+}
+Response 
+{
+  "data": {
+    "allFilms": {
+      "films": [
+        {
+          "title": "A New Hope"
+        },
+        {
+          "title": "The Empire Strikes Back"
+        },
+        {
+          "title": "Return of the Jedi"
+        },
+        {
+          "title": "The Phantom Menace"
+        },
+        {
+          "title": "Attack of the Clones"
+        },
+        {
+          "title": "Revenge of the Sith"
+        },
+        {
+          "title": "The Force Awakens"
+        }
+      ]
+    }
+  }
+}
+
+//#2 
+query AllPeople {
+  allPeople(first: 3) {
+    people {
+      id
+      name
+    }
+  }
+}
+
+//Return some people so I can get an ID
+{
+  "data": {
+    "allPeople": {
+      "people": [
+        {
+          "id": "cGVvcGxlOjE=",
+          "name": "Luke Skywalker"
+        },
+        {
+          "id": "cGVvcGxlOjI=",
+          "name": "C-3PO"
+        },
+        {
+          "id": "cGVvcGxlOjM=",
+          "name": "R2-D2"
+        }
+      ]
+    }
+  }
+}
+
+//Get one person Name
+query Person {
+  person(id: "cGVvcGxlOjQ=") {
+    name
+  }
+}
+
+{
+  "data": {
+    "person": {
+      "name": "Darth Vader"
+    }
+  }
+}
+
+
+
+//#3
+query PlanetsFirst5 {
+  allPlanets(first: 5) {
+    planets {
+      name
+      climates
+    }
+  }}
+
+{
+  "data": {
+    "allPlanets": {
+      "planets": [
+        {
+          "name": "Tatooine",
+          "climates": [
+            "arid"
+          ]
+        },
+        {
+          "name": "Alderaan",
+          "climates": [
+            "temperate"
+          ]
+        },
+        {
+          "name": "Yavin IV",
+          "climates": [
+            "temperate",
+            "tropical"
+          ]
+        },
+        {
+          "name": "Hoth",
+          "climates": [
+            "frozen"
+          ]
+        },
+        {
+          "name": "Dagobah",
+          "climates": [
+            "murky"
+          ]
+        }
+      ]
+    }
+  }
+}
+
+
+//#4
+query StarshipsLast3 {
+  allStarships(last: 3) {
+    starships {
+      name
+      model
+    }
+  
+}
+}
+
+{
+  "data": {
+    "allStarships": {
+      "starships": [
+        {
+          "name": "Belbullab-22 starfighter",
+          "model": "Belbullab-22 starfighter"
+        },
+        {
+          "name": "V-wing",
+          "model": "Alpha-3 Nimbus-class V-wing starfighter"
+        },
+        {
+          "name": "X-wing",
+          "model": "T-70 X-wing"
+        }
+      ]
+    }
+  }
+}
+
+
+//Intermediate Tasks
+//#1  
+
+//First try -- Wrong! 
+query MyQuery {
+  allPeople(first: 5) {
+    people {
+      name
+    }
+    edges {
+      node {
+        starshipConnection(first: 10) {
+          starships {
+            name
+            pilotConnection {
+              pilots {
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query MyQuery {
+  allPeople(first: 5) {
+    people {
+      name
+      starshipConnection {
+        starships {
+          name
+        }
+      }
+    }
+  }
+}
+
+{
+  "data": {
+    "allPeople": {
+      "people": [
+        {
+          "name": "Luke Skywalker",
+          "starshipConnection": {
+            "starships": [
+              {
+                "name": "X-wing"
+              },
+              {
+                "name": "Imperial shuttle"
+              }
+            ]
+          }
+        },
+        {
+          "name": "C-3PO",
+          "starshipConnection": {
+            "starships": []
+          }
+        },
+        {
+          "name": "R2-D2",
+          "starshipConnection": {
+            "starships": []
+          }
+        },
+        {
+          "name": "Darth Vader",
+          "starshipConnection": {
+            "starships": [
+              {
+                "name": "TIE Advanced x1"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Leia Organa",
+          "starshipConnection": {
+            "starships": []
+          }
+        }
+      ]
+    }
+  }
+}
+
+//#2
+query MyQuery {
+  allSpecies(first: 5) {
+    species {
+      name
+      language
+    }
+  }
+}
+{
+  "data": {
+    "allSpecies": {
+      "species": [
+        {
+          "name": "Human",
+          "language": "Galactic Basic"
+        },
+        {
+          "name": "Droid",
+          "language": "n/a"
+        },
+        {
+          "name": "Wookiee",
+          "language": "Shyriiwook"
+        },
+        {
+          "name": "Rodian",
+          "language": "Galatic Basic"
+        },
+        {
+          "name": "Hutt",
+          "language": "Huttese"
+        }
+      ]
+    }
+  }
+}
+
+
+//#3
+query MyQuery {
+  allPlanets(last: 5) {
+    planets {
+      name
+      climates
+    }
+  }
+}
+
+{
+  "data": {
+    "allPlanets": {
+      "planets": [
+        {
+          "name": "Muunilinst",
+          "climates": [
+            "temperate"
+          ]
+        },
+        {
+          "name": "Shili",
+          "climates": [
+            "temperate"
+          ]
+        },
+        {
+          "name": "Kalee",
+          "climates": [
+            "arid",
+            "temperate",
+            "tropical"
+          ]
+        },
+        {
+          "name": "Umbara",
+          "climates": [
+            "unknown"
+          ]
+        },
+        {
+          "name": "Jakku",
+          "climates": [
+            "unknown"
+          ]
+        }
+      ]
+    }
+  }
+}
+
+
+//#4
+query MyQuery {
+  allVehicles(first: 3) {
+    vehicles {
+      name
+      costInCredits
+    }
+  }
+}
+{
+  "data": {
+    "allVehicles": {
+      "vehicles": [
+        {
+          "name": "Sand Crawler",
+          "costInCredits": 150000
+        },
+        {
+          "name": "T-16 skyhopper",
+          "costInCredits": 14500
+        },
+        {
+          "name": "X-34 landspeeder",
+          "costInCredits": 10550
+        }
+      ]
+    }
+  }
+}
+
+
+//Advanced Tasks
+
+//#1 First get a few films and return their ID then get the film name and all characters in it 
+query MyQuery {
+  allFilms(first: 2) {
+    films {
+      id
+    }
+  }
+  film(id: "ZmlsbXM6MQ==") {
+     title
+    characterConnection {
+      characters {
+        name
+      }
+    }
+   
+  }
+}
+
+{
+  "data": {
+    "allFilms": {
+      "films": [
+        {
+          "id": "ZmlsbXM6MQ=="
+        },
+        {
+          "id": "ZmlsbXM6Mg=="
+        }
+      ]
+    },
+    "film": {
+      "title": "A New Hope",
+      "characterConnection": {
+        "characters": [
+          {
+            "name": "Luke Skywalker"
+          },
+          {
+            "name": "C-3PO"
+          },
+          {
+            "name": "R2-D2"
+          },
+          {
+            "name": "Darth Vader"
+          },
+          {
+            "name": "Leia Organa"
+          },
+          {
+            "name": "Owen Lars"
+          },
+          {
+            "name": "Beru Whitesun lars"
+          },
+          {
+            "name": "R5-D4"
+          },
+          {
+            "name": "Biggs Darklighter"
+          },
+          {
+            "name": "Obi-Wan Kenobi"
+          },
+          {
+            "name": "Wilhuff Tarkin"
+          },
+          {
+            "name": "Chewbacca"
+          },
+          {
+            "name": "Han Solo"
+          },
+          {
+            "name": "Greedo"
+          },
+          {
+            "name": "Jabba Desilijic Tiure"
+          },
+          {
+            "name": "Wedge Antilles"
+          },
+          {
+            "name": "Jek Tono Porkins"
+          },
+          {
+            "name": "Raymus Antilles"
+          }
+        ]
+      }
+    }
+  }
+}
+
+//#2
+query MyQuery {
+  allPeople {
+    people {
+      filmConnection {
+        totalCount
+      }
+    }
+  }
+}
+
+{
+  "data": {
+    "allPeople": {
+      "people": [
+        {
+          "filmConnection": {
+            "totalCount": 5
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 6
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 7
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 4
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 5
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 3
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 3
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 6
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 3
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 5
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 4
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 3
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 3
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 5
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 5
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 3
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 3
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 3
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 3
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 3
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 3
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 3
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 3
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 2
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        },
+        {
+          "filmConnection": {
+            "totalCount": 1
+          }
+        }
+      ]
+    }
+  }
+}
+//#3
+
+query MyQuery {
+  allFilms {
+    films {
+        title
+      characterConnection {
+        totalCount
+      }
+    
+    }
+  }
+}
+
+{
+  "data": {
+    "allFilms": {
+      "films": [
+        {
+          "title": "A New Hope",
+          "characterConnection": {
+            "totalCount": 18
+          }
+        },
+        {
+          "title": "The Empire Strikes Back",
+          "characterConnection": {
+            "totalCount": 16
+          }
+        },
+        {
+          "title": "Return of the Jedi",
+          "characterConnection": {
+            "totalCount": 20
+          }
+        },
+        {
+          "title": "The Phantom Menace",
+          "characterConnection": {
+            "totalCount": 34
+          }
+        },
+        {
+          "title": "Attack of the Clones",
+          "characterConnection": {
+            "totalCount": 40
+          }
+        },
+        {
+          "title": "Revenge of the Sith",
+          "characterConnection": {
+            "totalCount": 34
+          }
+        },
+        {
+          "title": "The Force Awakens",
+          "characterConnection": {
+            "totalCount": 11
+          }
+        }
+      ]
+    }
+  }
+}
+
+//Complex Tasks
+//#1
+
+query MyQuery {
+  person(id: "cGVvcGxlOjM=") {
+    name
+    filmConnection {
+      films {
+        title
+      }
+    }
+    starshipConnection {
+      starships {
+        name
+      }
+    }
+    homeworld {
+      name
+    }
+  }
+}
+
+{
+  "data": {
+    "person": {
+      "name": "R2-D2",
+      "filmConnection": {
+        "films": [
+          {
+            "title": "A New Hope"
+          },
+          {
+            "title": "The Empire Strikes Back"
+          },
+          {
+            "title": "Return of the Jedi"
+          },
+          {
+            "title": "The Phantom Menace"
+          },
+          {
+            "title": "Attack of the Clones"
+          },
+          {
+            "title": "Revenge of the Sith"
+          },
+          {
+            "title": "The Force Awakens"
+          }
+        ]
+      },
+      "starshipConnection": {
+        "starships": []
+      },
+      "homeworld": {
+        "name": "Naboo"
+      }
+    }
+  }
+}
+
+//#2
+query MyQuery {
+  allPeople(first: 5) {
+    people {
+      name
+      homeworld {
+        name
+        population
+      }
+    }
+  }
+}
+
+
+{
+  "data": {
+    "allPeople": {
+      "people": [
+        {
+          "name": "Luke Skywalker",
+          "homeworld": {
+            "name": "Tatooine",
+            "population": 200000
+          }
+        },
+        {
+          "name": "C-3PO",
+          "homeworld": {
+            "name": "Tatooine",
+            "population": 200000
+          }
+        },
+        {
+          "name": "R2-D2",
+          "homeworld": {
+            "name": "Naboo",
+            "population": 4500000000
+          }
+        },
+        {
+          "name": "Darth Vader",
+          "homeworld": {
+            "name": "Tatooine",
+            "population": 200000
+          }
+        },
+        {
+          "name": "Leia Organa",
+          "homeworld": {
+            "name": "Alderaan",
+            "population": 2000000000
+          }
+        }
+      ]
+    }
+  }
+}
+
+//#3 
+query MyQuery {
+  allVehicles(first: 3) {
+    vehicles {
+      name
+      pilotConnection {
+        pilots {
+          name
+          species {
+            name
+          }
+        }
+      }
+    }
+  }
+}
+
+{
+  "data": {
+    "allVehicles": {
+      "vehicles": [
+        {
+          "name": "Sand Crawler",
+          "pilotConnection": {
+            "pilots": []
+          }
+        },
+        {
+          "name": "T-16 skyhopper",
+          "pilotConnection": {
+            "pilots": []
+          }
+        },
+        {
+          "name": "X-34 landspeeder",
+          "pilotConnection": {
+            "pilots": []
+          }
+        }
+      ]
+    }
+  }
+}
+
+//#4
+
+query MyQuery {
+  allFilms(first: 3) {
+    films {
+      characterConnection {
+        characters {
+          name
+        }
+      }
+      planetConnection {
+        planets {
+          name
+        }
+      }
+      starshipConnection {
+        starships {
+          name
+        }
+      }
+    }
+  }
+}
+
+{
+  "data": {
+    "allFilms": {
+      "films": [
+        {
+          "characterConnection": {
+            "characters": [
+              {
+                "name": "Luke Skywalker"
+              },
+              {
+                "name": "C-3PO"
+              },
+              {
+                "name": "R2-D2"
+              },
+              {
+                "name": "Darth Vader"
+              },
+              {
+                "name": "Leia Organa"
+              },
+              {
+                "name": "Owen Lars"
+              },
+              {
+                "name": "Beru Whitesun lars"
+              },
+              {
+                "name": "R5-D4"
+              },
+              {
+                "name": "Biggs Darklighter"
+              },
+              {
+                "name": "Obi-Wan Kenobi"
+              },
+              {
+                "name": "Wilhuff Tarkin"
+              },
+              {
+                "name": "Chewbacca"
+              },
+              {
+                "name": "Han Solo"
+              },
+              {
+                "name": "Greedo"
+              },
+              {
+                "name": "Jabba Desilijic Tiure"
+              },
+              {
+                "name": "Wedge Antilles"
+              },
+              {
+                "name": "Jek Tono Porkins"
+              },
+              {
+                "name": "Raymus Antilles"
+              }
+            ]
+          },
+          "planetConnection": {
+            "planets": [
+              {
+                "name": "Tatooine"
+              },
+              {
+                "name": "Alderaan"
+              },
+              {
+                "name": "Yavin IV"
+              }
+            ]
+          },
+          "starshipConnection": {
+            "starships": [
+              {
+                "name": "CR90 corvette"
+              },
+              {
+                "name": "Star Destroyer"
+              },
+              {
+                "name": "Sentinel-class landing craft"
+              },
+              {
+                "name": "Death Star"
+              },
+              {
+                "name": "Millennium Falcon"
+              },
+              {
+                "name": "Y-wing"
+              },
+              {
+                "name": "X-wing"
+              },
+              {
+                "name": "TIE Advanced x1"
+              }
+            ]
+          }
+        },
+        {
+          "characterConnection": {
+            "characters": [
+              {
+                "name": "Luke Skywalker"
+              },
+              {
+                "name": "C-3PO"
+              },
+              {
+                "name": "R2-D2"
+              },
+              {
+                "name": "Darth Vader"
+              },
+              {
+                "name": "Leia Organa"
+              },
+              {
+                "name": "Obi-Wan Kenobi"
+              },
+              {
+                "name": "Chewbacca"
+              },
+              {
+                "name": "Han Solo"
+              },
+              {
+                "name": "Wedge Antilles"
+              },
+              {
+                "name": "Yoda"
+              },
+              {
+                "name": "Palpatine"
+              },
+              {
+                "name": "Boba Fett"
+              },
+              {
+                "name": "IG-88"
+              },
+              {
+                "name": "Bossk"
+              },
+              {
+                "name": "Lando Calrissian"
+              },
+              {
+                "name": "Lobot"
+              }
+            ]
+          },
+          "planetConnection": {
+            "planets": [
+              {
+                "name": "Hoth"
+              },
+              {
+                "name": "Dagobah"
+              },
+              {
+                "name": "Bespin"
+              },
+              {
+                "name": "Ord Mantell"
+              }
+            ]
+          },
+          "starshipConnection": {
+            "starships": [
+              {
+                "name": "Star Destroyer"
+              },
+              {
+                "name": "Millennium Falcon"
+              },
+              {
+                "name": "Y-wing"
+              },
+              {
+                "name": "X-wing"
+              },
+              {
+                "name": "Executor"
+              },
+              {
+                "name": "Rebel transport"
+              },
+              {
+                "name": "Slave 1"
+              },
+              {
+                "name": "Imperial shuttle"
+              },
+              {
+                "name": "EF76 Nebulon-B escort frigate"
+              }
+            ]
+          }
+        },
+        {
+          "characterConnection": {
+            "characters": [
+              {
+                "name": "Luke Skywalker"
+              },
+              {
+                "name": "C-3PO"
+              },
+              {
+                "name": "R2-D2"
+              },
+              {
+                "name": "Darth Vader"
+              },
+              {
+                "name": "Leia Organa"
+              },
+              {
+                "name": "Obi-Wan Kenobi"
+              },
+              {
+                "name": "Chewbacca"
+              },
+              {
+                "name": "Han Solo"
+              },
+              {
+                "name": "Jabba Desilijic Tiure"
+              },
+              {
+                "name": "Wedge Antilles"
+              },
+              {
+                "name": "Yoda"
+              },
+              {
+                "name": "Palpatine"
+              },
+              {
+                "name": "Boba Fett"
+              },
+              {
+                "name": "Lando Calrissian"
+              },
+              {
+                "name": "Ackbar"
+              },
+              {
+                "name": "Mon Mothma"
+              },
+              {
+                "name": "Arvel Crynyd"
+              },
+              {
+                "name": "Wicket Systri Warrick"
+              },
+              {
+                "name": "Nien Nunb"
+              },
+              {
+                "name": "Bib Fortuna"
+              }
+            ]
+          },
+          "planetConnection": {
+            "planets": [
+              {
+                "name": "Tatooine"
+              },
+              {
+                "name": "Dagobah"
+              },
+              {
+                "name": "Endor"
+              },
+              {
+                "name": "Naboo"
+              },
+              {
+                "name": "Coruscant"
+              }
+            ]
+          },
+          "starshipConnection": {
+            "starships": [
+              {
+                "name": "CR90 corvette"
+              },
+              {
+                "name": "Star Destroyer"
+              },
+              {
+                "name": "Millennium Falcon"
+              },
+              {
+                "name": "Y-wing"
+              },
+              {
+                "name": "X-wing"
+              },
+              {
+                "name": "Executor"
+              },
+              {
+                "name": "Rebel transport"
+              },
+              {
+                "name": "Imperial shuttle"
+              },
+              {
+                "name": "EF76 Nebulon-B escort frigate"
+              },
+              {
+                "name": "Calamari Cruiser"
+              },
+              {
+                "name": "A-wing"
+              },
+              {
+                "name": "B-wing"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
