@@ -1,0 +1,18 @@
+:root {
+  --bg: #16171d;
+  --text: #e5e7eb;
+  --text-h: #ffffff;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}

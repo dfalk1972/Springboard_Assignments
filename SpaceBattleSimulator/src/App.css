@@ -1,0 +1,45 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.Top {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.Middle {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.Left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.Center {
+  display: flex;
+  justify-content: center;
+}
+
+.Right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Bottom {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
