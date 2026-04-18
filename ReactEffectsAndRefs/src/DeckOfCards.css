@@ -1,0 +1,97 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.overlay p {
+  color: white;
+  font-size: 2rem;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  gap: 40px;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+button:hover:not(:disabled) {
+  transform: translate(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 1);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn-deal {
+  background-color: #c0392b; /* red - Deal */
+  color: white;
+}
+.btn-shuffle {
+  background-color: #f39c12; /* gold - Shuffle */
+  color: white;
+}
+.btn-reset {
+  background-color: #2980b9; /* blue - Restart */
+  color: white;
+}
+
+.btn-auto {
+  background-color: #8e44ad;
+  color: white;
+}
+
+.btn-stop {
+  background-color: #c0392b;
+  color: white;
+}
+
+.cards-container {
+  position: relative;
+  margin-top: 60px;
+  height: 250px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: visible;
+  margin-bottom: 60px;
+}
+
+.cards-container img {
+  position: absolute;
+  width: 150px;
+  top: 0;
+  transition: transform 0.2s;
+}
+
+.cards-container img:hover {
+  transform: translateY(-20px); /* cards fan up on hover, optional but fun */
+}
