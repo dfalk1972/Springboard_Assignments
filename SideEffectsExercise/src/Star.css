@@ -1,0 +1,9 @@
+.star {
+  position: absolute;
+  cursor: pointer;
+}
+
+.star:focus {
+  filter: drop-shadow(0 0 8px gold);
+  outline: none;
+}
