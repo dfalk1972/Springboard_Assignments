@@ -1,0 +1,27 @@
+.spacecraft-builder {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.builder-title {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--green-bright);
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--green-dim);
+  padding-bottom: 0.75rem;
+  text-shadow: 0 0 12px rgba(74, 255, 107, 0.4);
+}
+
+.builder-title::before {
+  content: "[ ";
+  color: var(--text-dim);
+}
+
+.builder-title::after {
+  content: " ]";
+  color: var(--text-dim);
+}

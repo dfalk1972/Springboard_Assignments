@@ -1,0 +1,48 @@
+.inventory-display {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green-dim);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inventory-title {
+  font-family: "Oswald", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--green-bright);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.inventory-title::before {
+  content: "> ";
+  color: var(--text-dim);
+}
+
+.empty-message {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  padding: 1rem 0;
+  text-align: center;
+  border: 1px dashed var(--border);
+}
+
+.inventory-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid var(--border);
+  background-color: var(--bg-card);
+  padding: 0.75rem 1rem;
+  transition: border-color 0.2s;
+}
+
+.inventory-row:hover {
+  border-color: var(--green-muted);
+}

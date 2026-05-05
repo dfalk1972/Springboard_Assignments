@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Oswald:wght@400;600;700&display=swap");
+
+:root {
+  --bg-dark: #0a0c0a;
+  --bg-panel: #111612;
+  --bg-card: #161d14;
+  --green-bright: #4aff6b;
+  --green-dim: #2a8c3f;
+  --green-muted: #1a3d22;
+  --amber: #ffb347;
+  --red-alert: #ff3b3b;
+  --text-primary: #c8e6c9;
+  --text-dim: #6a8f6e;
+  --border: #2a4a2e;
+  --border-bright: #4aff6b44;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: "Share Tech Mono", monospace;
+  min-height: 100vh;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(74, 255, 107, 0.015) 2px,
+    rgba(74, 255, 107, 0.015) 4px
+  );
+}
+
+#root {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}

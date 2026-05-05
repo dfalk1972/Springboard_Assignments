@@ -1,0 +1,24 @@
+.delete-btn {
+  background-color: transparent;
+  border: 1px solid #5a2020;
+  color: var(--red-alert);
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.delete-btn:hover {
+  background-color: rgba(255, 59, 59, 0.1);
+  box-shadow: 0 0 8px rgba(255, 59, 59, 0.25);
+}
+
+.delete-btn:active {
+  transform: scale(0.97);
+}
