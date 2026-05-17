@@ -1,0 +1,38 @@
+.nav {
+  background-color: #0f0f2a;
+  border-bottom: 1px solid #1e3a5f;
+  padding: 12px 20px;
+}
+
+.navList {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+.navLink {
+  color: #8ab4d4;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.navLink:hover,
+.navLink.active {
+  color: #ffffff;
+}
+
+.navLink {
+  color: #8ab4d4;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+/* Just like navLink but green */
+.activeLink {
+  color: #4caf50;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
