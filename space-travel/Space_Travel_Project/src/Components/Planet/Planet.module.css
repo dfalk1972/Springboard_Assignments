@@ -1,0 +1,66 @@
+.card {
+  background: rgba(124, 58, 237, 0.08);
+  border: 1px solid rgba(124, 58, 237, 0.4);
+  border-radius: 16px;
+  padding: 1.25rem;
+  max-width: 340px;
+  text-align: left;
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.15);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.3);
+  border-color: var(--electric-cyan);
+}
+
+.card__title {
+  margin-bottom: 0.25rem;
+}
+
+.card__population {
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
+}
+
+.card__image {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 0.75rem;
+}
+
+.card__ships {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card__ship {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.card__select {
+  font-family: "Inter", sans-serif;
+  color: var(--text-light);
+  background: rgba(11, 4, 32, 0.7);
+  border: 1px solid rgba(196, 181, 253, 0.3);
+  border-radius: 6px;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+}
+
+.card__select:focus {
+  outline: none;
+  border-color: var(--electric-cyan);
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.4);
+}

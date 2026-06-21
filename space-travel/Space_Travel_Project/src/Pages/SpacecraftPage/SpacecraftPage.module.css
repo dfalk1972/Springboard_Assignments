@@ -1,0 +1,52 @@
+.page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.page__back {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: var(--text-dim);
+}
+
+.page__back:hover {
+  color: var(--electric-cyan);
+}
+
+.detail {
+  background: rgba(124, 58, 237, 0.08);
+  border: 1px solid rgba(124, 58, 237, 0.4);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.2);
+}
+
+.detail__image {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+}
+
+.detail__name {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 18px rgba(236, 72, 153, 0.5);
+}
+
+.detail__capacity {
+  color: var(--electric-cyan);
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.detail__description {
+  color: var(--text-dim);
+  line-height: 1.6;
+  max-width: 50ch;
+  margin: 0 auto;
+}

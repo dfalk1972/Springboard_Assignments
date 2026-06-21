@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;600&display=swap");
+
+:root {
+  --space-void: #0b0420;
+  --vibrant-purple: #7c3aed;
+  --hot-magenta: #ec4899;
+  --electric-cyan: #22d3ee;
+  --star-amber: #fbbf24;
+  --text-light: #f5f3ff;
+  --text-dim: #c4b5fd;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  color: var(--text-light);
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(124, 58, 237, 0.35),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(236, 72, 153, 0.3),
+      transparent 45%
+    ),
+    var(--space-void);
+  background-attachment: fixed;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 0.04em;
+}
+
+a {
+  color: var(--electric-cyan);
+  text-decoration: none;
+}

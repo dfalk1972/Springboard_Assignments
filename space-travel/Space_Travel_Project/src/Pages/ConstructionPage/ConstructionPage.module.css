@@ -1,0 +1,22 @@
+.page {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.page__title {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 18px rgba(124, 58, 237, 0.6);
+}
+
+.page__back {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: var(--text-dim);
+}
+
+.page__back:hover {
+  color: var(--electric-cyan);
+}

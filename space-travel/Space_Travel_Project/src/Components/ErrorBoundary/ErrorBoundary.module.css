@@ -1,0 +1,41 @@
+.error {
+  max-width: 500px;
+  margin: 4rem auto;
+  padding: 2.5rem;
+  text-align: center;
+  background: rgba(124, 58, 237, 0.08);
+  border: 1px solid var(--hot-magenta);
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(236, 72, 153, 0.25);
+}
+
+.error__title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.error__text {
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.error__button {
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 0.05em;
+  color: var(--text-light);
+  background: linear-gradient(
+    135deg,
+    var(--vibrant-purple),
+    var(--hot-magenta)
+  );
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 1.75rem;
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(236, 72, 153, 0.3);
+}
+
+.error__button:hover {
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.5);
+}

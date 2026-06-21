@@ -1,0 +1,38 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(11, 4, 32, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(124, 58, 237, 0.4);
+}
+
+.nav__list {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  padding: 1rem;
+}
+
+.nav__link {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.nav__link:hover {
+  color: var(--text-light);
+}
+
+.nav__link--active {
+  color: var(--space-void);
+  background: var(--electric-cyan);
+  box-shadow: 0 0 16px rgba(34, 211, 238, 0.5);
+}
