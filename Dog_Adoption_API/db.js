@@ -7,6 +7,7 @@ async function connectDB() {
   client = new MongoClient(process.env.MONGODB_URI);
   await client.connect();
   db = client.db(process.env.DB_NAME);
+  await db.collection("users").createIndex({ username: 1 }, { unique: true });
   return db;
 }
 
